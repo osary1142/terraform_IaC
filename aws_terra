@@ -1,4 +1,4 @@
-resource "aws_iam_user" "terraform_user" {
+ resource "aws_iam_user" "terraform_user" {
   name = "terraform-user"
 }
 
@@ -17,3 +17,13 @@ resource "aws_iam_access_key" "terraform_user_key" {
 terraform-user に対して アクセスキーとシークレットキー が発行されます。
 
 terraform output を使ってシークレットキーを取得できます。
+
+
+IAM ユーザーに権限（ポリシー）を付与する
+resource "aws_iam_user_policy_attachment" "terraform_user_policy" {
+  user       = aws_iam_user.terraform_user.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+terraform-user に Amazon S3 へのフルアクセス権限 (AmazonS3FullAccess) を付与できます。
+
