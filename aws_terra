@@ -1,0 +1,19 @@
+resource "aws_iam_user" "terraform_user" {
+  name = "terraform-user"
+}
+
+resource: Terraform で AWS のリソースを作成するためのキーワード。
+
+aws_iam_user: AWS IAM ユーザーを作成するリソースタイプ。
+
+terraform_user: Terraform 内でこのリソースを識別する名前（ローカルの変数名）。この名前は Terraform 内でのみ使われ、AWS には影響しません。
+
+name = "terraform-user": 実際に作成される IAM ユーザーの名前。 
+
+resource "aws_iam_access_key" "terraform_user_key" {
+  user = aws_iam_user.terraform_user.name
+}
+
+terraform-user に対して アクセスキーとシークレットキー が発行されます。
+
+terraform output を使ってシークレットキーを取得できます。
