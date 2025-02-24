@@ -27,3 +27,9 @@ resource "aws_iam_user_policy_attachment" "terraform_user_policy" {
 
 terraform-user に Amazon S3 へのフルアクセス権限 (AmazonS3FullAccess) を付与できます。
 
+
+# 実行手順
+  1.  terraform init（Terraform の初期化）
+  2.  terraform apply（リソースを作成）
+  3.  terraform output で aws_iam_access_key の id と secret を取得
+  4.  取得したアクセスキーを使って AWS CLI にログインする（aws configure）
